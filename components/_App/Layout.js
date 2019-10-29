@@ -10,6 +10,7 @@ function Layout({ children }) {
       <Head>
         <HeadContent />
         {/* Stylesheets */}
+
         <link rel="stylesheet" type="text/css" href="/static/styles.css" />
         <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         <link
