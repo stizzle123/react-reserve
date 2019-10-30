@@ -4,6 +4,8 @@ import { Header, Button, Modal } from "semantic-ui-react";
 function ProductAttributes({ description }) {
   const [modal, setModal] = useState(false);
 
+  function handleDelete() {}
+
   return (
     <>
       <Header as="h3">About this Product</Header>
@@ -26,6 +28,7 @@ function ProductAttributes({ description }) {
             negative
             labelPosition="right"
             content="Delete"
+            onClick={handleDelete}
           />
         </Modal.Actions>
       </Modal>
