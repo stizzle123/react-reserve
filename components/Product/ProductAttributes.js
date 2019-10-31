@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { Header, Button, Modal } from "semantic-ui-react";
+import axios from "axios";
+import baseUrl from "../../utils/baseUrl";
+import { useRouter } from "next/router";
 
-function ProductAttributes({ description }) {
+function ProductAttributes({ description, _id }) {
   const [modal, setModal] = useState(false);
+  const router = useRouter();
 
-  function handleDelete() {}
+  async function handleDelete() {
+    const url = `${baseUrl}/api/product`;
+    const payload = { params: { _id } };
+    await axios.delete(url, payload);
+    router.push("/");
+  }
 
   return (
     <>
