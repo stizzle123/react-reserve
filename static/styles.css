@@ -4,6 +4,8 @@
   --progressBar: #54d1db;
 }
 
+/* * */
+
 body {
   background: var(--bodyBg);
 }

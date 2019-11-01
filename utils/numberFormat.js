@@ -1,6 +1,6 @@
-export default number => {
-  return new Intl.NumberFormat("en-US", {
+export default (number, locales = "en-US", currency = "USD") => {
+  return new Intl.NumberFormat(locales, {
     style: "currency",
-    currency: "USD"
+    currency: currency
   }).format(number);
 };
