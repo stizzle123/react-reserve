@@ -1,5 +1,6 @@
 import Product from "../../models/Product";
 import Cart from "../../models/Cart";
+import Order from "../../models//Order";
 import connectDb from "../../utils/connectDb";
 
 connectDb();
@@ -53,6 +54,10 @@ async function handleDeleteRequest(req, res) {
     const { _id } = req.query;
     await Product.findByIdAndDelete({ _id });
     await Cart.updateMany(
+      { "products.product": _id },
+      { $pull: { products: { product: _id } } }
+    );
+    await Order.updateMany(
       { "products.product": _id },
       { $pull: { products: { product: _id } } }
     );
