@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import ProductList from "../components/Index/ProductList";
+import ProductPagination from "../components/Index/ProductPagination";
 import baseUrl from "../utils/baseUrl";
 
-function Home({ products }) {
-  return <ProductList products={products} />;
+function Home({ products, totalPages }) {
+  return (
+    <>
+      <ProductList products={products} />
+      <ProductPagination totalPages={totalPages} />
+    </>
+  );
 }
 
-Home.getInitialProps = async () => {
+Home.getInitialProps = async ctx => {
+  const page = ctx.query.page ? ctx.query.page : "1";
+  const size = 9;
   const url = `${baseUrl}/api/products`;
-  const res = await axios.get(url, { withCredentials: true });
-  return { products: res.data };
+  const payload = { params: { page, size } };
+  const res = await axios.get(url, payload);
+  return res.data;
 };
 
 export default Home;
